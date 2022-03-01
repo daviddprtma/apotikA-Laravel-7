@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>David Store Medicine</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -13,6 +13,7 @@
         <style>
             html, body {
                 background-color: #fff;
+                background-image: url('{{ asset('imageshome/tokoobat.jpg')}}');
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -81,12 +82,27 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                David Store Medicine  
+                    <strong style="color: red;">David Store Medicine</strong>
                 </div>
                 
                 <div class="links">
-                    <img src="{{asset('images/apotik.png')}}" alt="">
+                    <img src="{{asset('imageshome/apotik.png')}}" alt="">
                 </div>
+
+                <br>
+
+                <a href="http://localhost:8000/products">
+                    <button style="font-size: 24px;">Jenis Medicine Product</button>
+                </a>
+
+                
+                <a href="http://localhost:8000/medicines">
+                    <button style="font-size: 24px;">Medicine Category</button>
+                </a>
+
+                <a href="http://localhost:8000/categories">
+                    <button style="font-size: 24px;">List Category</button>
+                </a>
             </div>
         </div>
     </body>

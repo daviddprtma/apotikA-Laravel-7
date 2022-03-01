@@ -19,6 +19,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/products', function () {
+    return view('products');
+});
+
+Route::get('/medicines', function () {
+    return view('medicines');
+});
+
+Route::resource('products', 'ProductController');
+
+Route::resource('medicines', 'MedicineController');
+
+Route::resource('categories', 'CategoryController');
+
 
 
 
