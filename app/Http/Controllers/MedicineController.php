@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Medicine;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
 class MedicineController extends Controller
@@ -16,9 +18,10 @@ class MedicineController extends Controller
     public function index()
     {
         //
-        $queryBuilder = DB::table('medicines') -> get();
-        
-        return view('medicine.index',['data' => $queryBuilder]);
+        // $queryBuilder = DB::table('medicines') -> get();
+        // menggunakan eloquent Model
+        $result = Medicine::all();
+        return view('medicine.index',['data' => $result]);
     }
 
     /**
@@ -51,6 +54,8 @@ class MedicineController extends Controller
     public function show(Medicine $medicine)
     {
         //
+        $data = $medicine;
+        return view('medicine.show',compact('data'));
     }
 
     /**
@@ -85,5 +90,165 @@ class MedicineController extends Controller
     public function destroy(Medicine $medicine)
     {
         //
+    }
+
+    public function coba1(){
+        // query builder filter
+        // $result = DB::table('medicines')
+        //         ->where('name','like','%fen%')
+        //         -> get();
+
+        // group by filter
+        // $result = DB::table('medicines')
+        //         -> select('name')
+        //         ->groupBy('name')
+        //         -> having('name','>',1)
+        //         -> get();
+
+        // aggregate count
+        // $result = DB::table('medicines')
+        //         -> count(); 
+        // result 16
+
+        // aggregate max
+        // $result = DB::table('medicines') -> max('price');
+        // result 35.000;
+
+        // aggregate + filter
+        // $result = DB::table('medicines')
+        //           -> where('price','<',20000)
+        //           -> count();
+        // result 11
+
+        // // join 
+        // $result = DB::table('medicines')
+        //           -> join('categories','medicines.category_id','=','categories.id')
+        //           -> orderBy('price','DESC')
+        //           ->get();
+
+        // // Eloquent
+        // $result = Medicine::where('price','>',20000)
+        //          -> orderBy('price',"DESC")
+        //          -> get();
+
+        // // ambil 1 data id
+        // $result = Medicine::find(3);
+
+        // ambil max price
+        $result = Medicine::max('price');
+       dd($result);
+    }
+
+    public function coba2(){
+        // query 1 table
+        // query builder categories 
+        $result = DB::table('categories')
+                  -> get();
+
+        // query eloquent categories
+        $result = Category::all();
+
+        // query builder medicines
+        $result = DB::table('medicines')
+                -> select('name','formula','price')
+                -> get();
+
+          // query eloquent medicines
+        $result = Medicine::select('name','formula','price')
+                  -> get();
+
+        // query inner join 2 tables
+        // query builder medicines & category
+        $result = DB::table('medicines')
+                  -> select('medicines.name','medicines.formula','categories.category_name')
+                  -> join('categories','medicines.category_id','=','categories.id')
+                  -> get();
+
+        // query eloquent medicines & category
+        $result = Medicine::select('medicines.name','medicines.formula','categories.category_name')
+                  -> join('categories','medicines.category_id','=','categories.id')
+                  -> get();
+
+        // aggregation sum & count dengan 2 tabel
+        // query builder medicines & category
+        $result = DB::table('categories')
+                  -> select('medicines.category_id')
+                  -> join('medicines', 'medicines.category_id','=','categories.id')
+                  -> count();
+        // query eloquent medicines & category
+        $result = Category::select('medicines.category_id')
+                  ->join('medicines', 'medicines.category_id','=','categories.id')
+                  ->count();
+        
+        // query builder medicines & category
+        // Tampilkan nama kategori yang tidak memiliki data medicines satupun
+        $result = DB::table('categories')
+                  -> select('category_name')
+                  ->whereNotIn('id', DB::table('medicines') ->select('category_id'))
+                  -> get();
+
+         // query eloquent medicines & category       
+         $result = Category::select('category_name')
+                   ->whereNotIn('id', DB::table('medicines') ->select('category_id'))
+                   -> get();
+
+        // query builder medicines & category
+        // Tampilkan rata-rata harga setiap kategori obat. Bila tidak ada obat maka berikan 0
+        $result = DB::table('medicines as m')
+                  ->select('c.id','c.category_name',DB::raw('IFNULL(avg(m.price),0) as RataRataHarga'))
+                  ->rightJoin('categories as c','m.category_id','=','c.id')
+                  ->groupBy('c.id','c.category_name')
+                  ->get();
+
+         // query eloquent medicines & category       
+            $result = Medicine:: select('c.id','c.category_name',DB::raw('IFNULL(avg(medicines.price),0) as RataRataHarga'))
+                      ->rightjoin('categories as c','c.id','=','medicines.category_id')
+                      ->groupBy('c.id','c.category_name')
+                      ->get();
+
+        // query builder medicines & category
+        // 4. Tampilkan kategori obat yang memiliki 1 produk medicines saja
+            $result = DB::table('categories as c')
+                      -> select('c.category_name')
+                      ->join('medicines as m','m.category_id','=','c.id')
+                      ->groupBy('c.category_name')
+                      ->having(DB::raw('count(m.category_id)'),'=',1)
+                      ->get();
+
+        // query eloquent medicines & category     
+              $result = Category::select('categories.category_name')
+                        ->join('medicines as m','m.category_id','=','categories.id')
+                        ->groupBy('categories.category_name')
+                        ->having(DB::raw('count(m.category_id)'),'=',1)
+                        ->get();
+
+        // query builder medicines
+        // Tampilkan obat yang memiliki satu form
+            $result = DB::table('medicines as m')
+                      ->select('m.name')
+                      ->groupBy('m.name')
+                      ->having(DB::raw('count(m.form)'),'=',1)
+                      ->get();
+
+        // query eloquent medicines
+        $result = Medicine::select('name')
+                  ->groupBy('name')
+                  ->having(DB::raw('count(form)'),'=',1)
+                  ->get();
+
+        // query builder medicines & category
+        // Tampilkan kategori dan nama obat yang memiliki harga termahal
+        $result = DB::table('medicines as m')
+                  ->select('m.name','c.category_name','m.price')
+                  ->join('categories as c','c.id','=','m.category_id')
+                  ->where('m.price',DB::raw('(select max(price) from medicines)'))
+                  ->get();
+
+        // query eloquent medicines
+        $result = Medicine::select('medicines.name','c.category_name','medicines.price')
+                  ->join('categories as c','c.id','=','medicines.category_id')
+                  ->where('medicines.price',DB::raw('(select max(price) from medicines)'))
+                  ->get();
+        dd($result);
     }
 }

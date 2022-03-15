@@ -60,7 +60,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        //debug program gunakan method dd()
+        // dd($product);
+        return view('product.show',['data' => $product]);
     }
 
     /**

@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Jenis-Jenis Medicine</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
+@extends('layouts.conquer')
+@section('content')
 
 <div class="container">
   <h2>Jenis Medicine Product beserta category</h2>
@@ -26,7 +17,7 @@
         @foreach ($data as $d)
         <tr>
             <td>{{ $d -> id }}</td>
-            <td>{{ $d-> product_name}}</td>
+            <td><a href="/products/{{ $d->id }}">{{ $d-> product_name}}</a></td>
             <td>{{ $d -> product_price}}</td>
             <td>{{ $d -> category_id}}</td>
         </tr>    
@@ -35,6 +26,4 @@
   </table>
 
 </div>
-
-</body>
-</html>
+@endsection

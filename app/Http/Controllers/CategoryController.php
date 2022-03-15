@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,9 +17,10 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $queryBuilder = DB::table('categories') -> get();
+        // $queryBuilder = DB::table('categories') -> get();
         
-        return view('category.index',['data' => $queryBuilder]);
+        $result = Category::all();
+        return view('category.index',['data' => $result]);
     }
 
     /**
@@ -85,5 +87,20 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+    }
+
+    public function showlist($id_category){
+        $data = Category::find($id_category);
+        $nameCategory = $data -> category_name;
+        $result = $data -> medicines;
+        
+        if($result){
+            $getTotalData = $result -> count();
+        }
+        else{
+            $getTotalData = 0;
+        }
+
+        return view('report.list_medicine_by_category',compact('id_category','nameCategory','result','getTotalData'));
     }
 }
