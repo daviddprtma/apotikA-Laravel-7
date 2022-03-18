@@ -251,4 +251,13 @@ class MedicineController extends Controller
                   ->get();
         dd($result);
     }
+
+    public function obattermahal(){
+        $hasilTermahal = DB::select(DB::raw(
+            "select m.name,MAX(m.price) from medicines m
+            inner join categories c on c.id = m.category_id
+            group by m.name"
+        ));
+        return view('report.maxpricemedicine',['result'=>$hasilTermahal]);
+    }
 }

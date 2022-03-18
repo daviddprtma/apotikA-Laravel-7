@@ -496,7 +496,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			</li>
 
 			<li class="start ">
-				<a href="{{url('report/listmedicine/{id}')}}">
+				<a href="{{url('report/obattermahal')}}">
 				<i class="fa fa-plus-square"></i>
 				<span class="title">Obat Termahal</span>
 				</a>

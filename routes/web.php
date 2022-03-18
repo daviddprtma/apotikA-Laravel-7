@@ -43,6 +43,8 @@ Route::get('/conquer', function () {
     return view('layouts.conquer');
 });
 
+Route::get('report/obattermahal','MedicineController@obattermahal');
+
 
 
 
