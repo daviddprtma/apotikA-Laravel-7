@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
 
 use function PHPSTORM_META\type;
@@ -44,6 +45,8 @@ Route::get('/conquer', function () {
 });
 
 Route::get('report/obattermahal','MedicineController@obattermahal');
+Route::post('/medicines/showInfo','MedicineController@showInfo')->name('medicines.showInfo');
+
 
 
 

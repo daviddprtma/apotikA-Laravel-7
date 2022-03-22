@@ -23,10 +23,42 @@
               @foreach($d->medicines as $m)
                   {{$m->name}} ({{$m->form}})<br>
               @endforeach
+
+              <a class='btn btn-xs btn-info' data-toggle='modal' data-target='#myModal'
+                onclick='showProducts({{ $d->id }})'>Detail</a>
           </td>  
         </tr>    
         @endforeach
     </tbody>
   </table>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog modal-wide">
+       <div class="modal-content" id="showproducts">
+         <!--loading animated gif can put here-->
+         <img class="loading" src="assets/img/ajax-modal-loading.gif" alt="">
+       </div>
+       <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>  
 </div>
 @endsection
+
+@section('javascript')
+<script>
+function showProducts(category_id)
+{
+  $.ajax({
+    type:'GET',
+    url:'{{url("report/listmedicine/")}}'+"/"+category_id,
+    data:{'_token':'<?php echo csrf_token() ?>',
+          'category_id':category_id
+         },
+    success: function(data){
+       $('#showproducts').html(data)
+    }
+  });
+}
+</script>

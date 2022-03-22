@@ -256,4 +256,13 @@ class MedicineController extends Controller
         $hasilTermahal = Medicine::orderBy('price','DESC')->first();
         return view('report.maxpricemedicine',['result'=>$hasilTermahal]);
     }
+
+    public function showInfo(){
+        $obatTermahal = Medicine::orderBy('price','DESC')->first();
+        return response()->json(array(
+            'status'=>'oke',
+            'msg'=>"<div class='alert alert-info'>
+                     Did you know? <br> The most expensive product is ".$obatTermahal -> name. " with price Rp. ".$obatTermahal -> price."</div>"
+        ),200);        
+    }
 }

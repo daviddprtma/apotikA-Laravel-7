@@ -1,7 +1,6 @@
-@extends('layouts.conquer')
-@section('content')
+<div class="row">
+  <div class="col-md-12">
 
-  <div class="container">
     <h2>Data Obat</h2>
     <table class="table">
       <thead>
@@ -34,11 +33,13 @@
       <tr>
           <td>Foto</td>
           <td>
-            <img src="{{asset('assets/images/'.$data->image) }}"
-              />
+            <img src="{{asset('assets/images/'.$data->image) }}"/>
           </td>
         </tr>
       </tbody>
     </table>
-  </div>
-@endsection
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+</div>
+</div>

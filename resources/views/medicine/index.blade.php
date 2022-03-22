@@ -24,15 +24,43 @@
               <td>{{ $d -> form}}</td>
               <td>{{ $d -> formula}}</td>
               <td>
-              <div class="row">
-                <div class="col-md-3">
-                    <img src="{{asset('assets/images/'.$d->image) }}"
-                     height="160px" />
-                </div>
-              </div>
+                <a href="#detail_{{$d->id}}" data-toggle="modal">
+                      <img src="{{asset('assets/images/'.$d->image) }}"
+                       height="100px" /></a>
+            
+                      <div class="modal fade" id="detail_{{$d->id}}" tabindex="-1" role="basic" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title">{{$d->name}} {{$d->form}}</h4>
+                              </div>
+                              <div class="modal-body">
+                                      <img src="{{asset('assets/images/'.$d->image) }}" height='200px' />
+                                      <br>
+                                      <h2>Description: {{$d->description}}</h2>
+                              </div>
+
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                          </div>
+                        </div>
+                      </div>
               </td>
               <td>{{ $d -> price}}</td>
               <td>{{ $d -> description}}</td>
+              <td>
+                <a class='btn btn-info' href="{{url('medicines/'.$d->id)}}"
+                   data-target="#show{{$d->id}}" data-toggle='modal'>detail</a>        
+                <div class="modal fade" id="show{{$d->id}}" tabindex="-1" role="basic" aria-hidden="true">
+                  <div class="modal-dialog">
+                   <div class="modal-content">
+                     <!-- put animated gif here -->
+                     <img class="loading" src="assets/img/ajax-modal-loading.gif" alt="">
+                   </div>
+                  </div>
+                </div>
+              </td>
               <td>{{ $d -> category_id}}</td>
           </tr>    
           @endforeach
