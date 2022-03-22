@@ -7,16 +7,9 @@
         <table class="table">
             <thead>
               <tr>
-                <th>Nama</th>
+                <th>Harga Obat termahal yaitu Rp.{{$result -> price}}</th>
               </tr>
             </thead>
-            <tbody>
-            @foreach ($result as $r)
-                <tr>
-                  <td>{{$r->name}}</td>
-                </tr>
-            @endforeach
-            </tbody>
           </table>    
     </div>
 @endsection
