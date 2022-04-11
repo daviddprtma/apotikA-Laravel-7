@@ -56,7 +56,7 @@
                   <div class="modal-dialog">
                    <div class="modal-content">
                      <!-- put animated gif here -->
-                     <img class="loading" src="assets/img/ajax-modal-loading.gif" alt="">
+                     <img src="{{ asset('assets/img/ajax-modal-loading.gif')}}" alt="" class="loading">
                    </div>
                   </div>
                 </div>

@@ -9,6 +9,6 @@ class Medicine extends Model
     //
     public function category(){
         // memanggil method bapak ke anak
-        return $this -> belongsTo('App\Category');
+        return $this -> belongsTo('App\Category','category_id');
     }
 }
