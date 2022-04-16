@@ -34,6 +34,10 @@ Route::resource('medicines', 'MedicineController');
 
 Route::resource('categories', 'CategoryController');
 
+Route::resource('transactions', 'TransactionController');
+
+Route::resource('buyers', 'BuyerController');
+
 Route::get('coba1', 'MedicineController@coba1');
 
 Route::get('coba2', 'MedicineController@coba2');
@@ -47,6 +51,8 @@ Route::get('/conquer', function () {
 Route::get('report/obattermahal','MedicineController@obattermahal');
 Route::post('/medicines/showInfo','MedicineController@showInfo')->name('medicines.showInfo');
 
+Route::post('transactions/showDataAjax','TransactionController@showAjax')->name('transactions.showAjax');
+Route::get('transactions/showDataAjax2/{id}','TransactionController@showAjax2')->name('transactions.showAjax2');
 
 
 
