@@ -510,6 +510,13 @@ License: You must have a valid license purchased only from themeforest(the above
 				<span class="title">Daftar Transaksi</span>
 				</a>
 			</li>
+
+            <li class="start">
+				<a href="{{url('suppliers')}}">
+                    <i class="fa fa-plus"></i>
+				<span class="title">Supplier</span>
+				</a>
+			</li>
 		</ul>
 		<!-- END SIDEBAR MENU -->
 	</div>

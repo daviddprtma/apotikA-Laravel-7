@@ -38,6 +38,8 @@ Route::resource('transactions', 'TransactionController');
 
 Route::resource('buyers', 'BuyerController');
 
+Route::resource('suppliers', 'SupplierController');
+
 Route::get('coba1', 'MedicineController@coba1');
 
 Route::get('coba2', 'MedicineController@coba2');
