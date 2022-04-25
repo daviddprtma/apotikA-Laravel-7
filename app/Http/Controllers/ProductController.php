@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
+use App\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,7 +21,8 @@ class ProductController extends Controller
         // $queryRaw = DB::select(DB::raw("select * from products"));
 
         // query menggunakan query builder
-        $queryBuilder = DB::table("products")-> get();
+        $result = Product::all();
+        return view('product.index',['data' => $result]);
 
         // query dengan menggunakan query eloquent model
         // $queryEloquent = Product::all();
@@ -28,7 +31,7 @@ class ProductController extends Controller
         // return view('product.index',compact('queryBuilder'));
 
         // cara 2 dengan sintaks array
-        return view('product.index',['data'=>$queryBuilder]);
+        // return view('product.index',['data'=>$queryBuilder]);
     }
 
     /**
@@ -39,6 +42,9 @@ class ProductController extends Controller
     public function create()
     {
         //
+        $cat = Category::all();
+        $sup = Supplier::all();
+        return view('product.create',['cat'=>$cat, 'sup'=>$sup]);
     }
 
     /**
@@ -50,6 +56,13 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        $data = new Product();
+        $data->product_name = $request->get('product_name');
+        $data->product_price = $request->get('product_price');
+        $data->category_id = $request->get('category_id');
+        $data ->supplier_id = $request->get('supplier_id');
+        $data -> save();
+        return redirect()->route('products.index')->with('status','Produk berhasil ditambahkan');
     }
 
     /**

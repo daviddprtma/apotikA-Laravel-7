@@ -1,13 +1,6 @@
 @extends('layouts.conquer')
 @section('content')
 
-@if (session('status'))
-    <div class="alert alert-success">
-        {{session('status')}}
-     </div>
-@endif
-
-
 <form role="form" method="POST" action="{{url('suppliers')}}">
     @csrf
     <div class="form-body">
