@@ -1,8 +1,27 @@
 @extends('layouts.conquer')
 @section('content')
 
+<br>
+  @if (session('status'))
+    <div class="alert alert-success">
+        {{session('status')}}
+     </div>
+  @endif
+
+  @if (session('error'))
+    <div class="alert alert-danger">
+        {{session('error')}}
+     </div>
+  @endif
+<br>
+  
+
   <div class="container">
     <h2>Daftar Obat Menggunakan Grid table bootstrap</h2>
+    <div class="page-toolbar">
+      <a href="{{url('medicines/create')}}" class="btn btn-info" type="button">
+        + Tambah Medicine</a>
+    </div>
     <table class="table">
       <thead>
         <tr>
@@ -49,6 +68,7 @@
               </td>
               <td>{{ $d -> price}}</td>
               <td>{{ $d -> description}}</td>
+              <td>{{ $d -> category_id}}</td>
               <td>
                 <a class='btn btn-info' href="{{url('medicines/'.$d->id)}}"
                    data-target="#show{{$d->id}}" data-toggle='modal'>detail</a>        
@@ -61,7 +81,15 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $d -> category_id}}</td>
+              <td><a href="{{url('medicines/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a></td>
+              <td>
+                <form method="POST" action="{{url('medicines/'.$d->id)}}">
+                  @csrf
+                  @method("DELETE")
+                  <input type="submit" value="delete" class="btn btn-danger"
+                  onclick="if(!confirm('are you sure you want to delete this medicines?')) return false;">
+                </form>
+              </td>
           </tr>    
           @endforeach
       </tbody>

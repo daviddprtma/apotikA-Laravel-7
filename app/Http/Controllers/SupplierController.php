@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Supplier;
 use Illuminate\Http\Request;
+use PDOException;
 
 class SupplierController extends Controller
 {
@@ -66,6 +67,8 @@ class SupplierController extends Controller
     public function edit(Supplier $supplier)
     {
         //
+        $data = $supplier;
+        return view('supplier.edit',compact('data'));
     }
 
     /**
@@ -78,6 +81,10 @@ class SupplierController extends Controller
     public function update(Request $request, Supplier $supplier)
     {
         //
+        $supplier->name = $request->get('namaSupplier');
+        $supplier->address = $request->get('alamatSupplier');
+        $supplier->save();
+        return redirect()->route('suppliers.index')->with('status','Supplier berhasil diupdate :)');
     }
 
     /**
@@ -89,5 +96,13 @@ class SupplierController extends Controller
     public function destroy(Supplier $supplier)
     {
         //
+       try{
+            $supplier->delete();
+            return redirect()->route('suppliers.index')->with('status','Data supplier berhasil dihapus');
+       }
+       catch(\PDOException $e){
+            $msg = "Data gagal dihapus. Pastikan data child sudah hilang atau tidak berhubungan dengan relasi yang lain";
+            return redirect()->route('suppliers.index')->with('error',$msg);
+       }
     }
 }

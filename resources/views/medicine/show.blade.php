@@ -24,7 +24,7 @@
       </tr>
       <tr>
           <td>Category</td>
-          <td>{{$data->category->name}}</td>
+          <td>{{$data->category->category_name}}</td>
       </tr>
       <tr>
           <td>Harga</td>

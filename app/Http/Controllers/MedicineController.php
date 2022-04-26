@@ -32,6 +32,9 @@ class MedicineController extends Controller
     public function create()
     {
         //
+        $cat = Category::all();
+        $med = Medicine::all();
+        return view('medicine.create',['cat'=>$cat,'med'=>$med]);
     }
 
     /**
@@ -43,6 +46,20 @@ class MedicineController extends Controller
     public function store(Request $request)
     {
         //
+        $data = new Medicine();
+        $data->name = $request->get('namaObat');
+        $data->form = $request->get('formObat');
+        $data->formula = $request->get('formulaObat');
+        $data->price = $request->get('priceObat');
+        $data->description = $request->get('descriptionObat');
+        $data->category_id = $request->get('category_id');
+        $data -> faskes1 =  $request->has('faskes_1')?1:0;
+        $data -> faskes2 =  $request->has('faskes_2')?1:0;
+        $data -> faskes3 =  $request->has('faskes_3')?1:0;
+        $data->image = $request->get('gambarObat');
+        $data->save();
+        return redirect()->route('medicines.index')->with('status','Medicine berhasil ditambahkan :)');
+
     }
 
     /**
@@ -67,6 +84,9 @@ class MedicineController extends Controller
     public function edit(Medicine $medicine)
     {
         //
+        $data = $medicine;
+        $cat = Category::all();
+        return view('medicine.edit',compact('data','cat'));
     }
 
     /**
@@ -79,6 +99,16 @@ class MedicineController extends Controller
     public function update(Request $request, Medicine $medicine)
     {
         //
+        $medicine->name = $request->get('namaObat');
+        $medicine->form = $request->get('formObat');
+        $medicine->formula = $request->get('formulaObat');
+        $medicine->price = $request->get('priceObat');
+        $medicine->description = $request->get('descriptionObat');
+        $medicine->category_id = $request->get('category_id');
+        $medicine->image = $request->get('gambarObat');
+        $medicine->save();
+        return redirect()->route('medicines.index')->with('status','Medicine berhasil diupdate :)');
+
     }
 
     /**
@@ -90,6 +120,14 @@ class MedicineController extends Controller
     public function destroy(Medicine $medicine)
     {
         //
+        try{
+            $medicine->delete();
+            return redirect()->route('medicines.index')->with('status','Data Medicine berhasil dihapus');
+       }
+       catch(\PDOException $e){
+            $msg = "Data gagal dihapus. Pastikan data child sudah hilang atau tidak berhubungan dengan relasi yang lain";
+            return redirect()->route('medicines.index')->with('error',$msg);
+       }
     }
 
     public function coba1(){
