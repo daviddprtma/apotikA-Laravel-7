@@ -56,6 +56,12 @@ Route::post('/medicines/showInfo','MedicineController@showInfo')->name('medicine
 Route::post('transactions/showDataAjax','TransactionController@showAjax')->name('transactions.showAjax');
 Route::get('transactions/showDataAjax2/{id}','TransactionController@showAjax2')->name('transactions.showAjax2');
 
+Route::post('/supplier/getEditForm','SupplierController@getEditForm')->name('supplier.getEditForm');
+
+Route::post('/supplier/getEditForm2','SupplierController@getEditForm2')->name('supplier.getEditForm2');
+
+Route::post('/supplier/saveData','SupplierController@saveData')->name('supplier.saveData');
+
 
 
 

@@ -62,3 +62,4 @@ function showProducts(category_id)
   });
 }
 </script>
+@endsection

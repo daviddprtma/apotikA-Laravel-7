@@ -105,4 +105,34 @@ class SupplierController extends Controller
             return redirect()->route('suppliers.index')->with('error',$msg);
        }
     }
+
+    public function getEditForm(Request $request){
+        $id = $request->get('id');
+        $data = Supplier::find($id);
+        return response()->json(array(
+            'status'=>'oke',
+            'msg'=>view('supplier.getEditForm',compact('data'))->render()
+        ),200);
+    }
+
+    public function getEditForm2(Request $request){
+        $id = $request->get('id');
+        $data = Supplier::find($id);
+        return response()->json(array(
+            'status'=>'oke',
+            'msg'=>view('supplier.getEditForm2',compact('data'))->render()
+        ),200);
+    }
+
+    public function saveData(Request $request){
+        $id = $request->get('id');
+        $supplier = Supplier::find($id);
+        $supplier->name=$request->get('namaSupplier');
+        $supplier->address=$request->get('alamatSupplier');
+        $supplier->save();
+        return response()->json(array(
+            'status'=>'oke',
+            'msg'=>'supplier data updated'
+        ),200);
+    }
 }
