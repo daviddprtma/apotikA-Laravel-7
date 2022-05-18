@@ -78,7 +78,7 @@
     </thead>
     <tbody>
         @foreach ($data as $d)
-        <tr>
+        <tr id="tr_{{$d->id}}">
             <td>{{ $d -> id }}</td>
             <td id="td_name_{{$d->id}}">{{ $d-> name}}</td>
             <td id="td_address_{{$d->id}}">{{ $d -> address}}</td>
@@ -97,6 +97,8 @@
                 @method("DELETE")
                 <input type="submit" value="delete" class="btn btn-xs btn-danger"
                 onclick="if(!confirm('are you sure you want to delete this {{$d->name}}?')) return false;">
+                <a class="btn btn-danger btn-xs" onclick="if(confirm('are you sure you want to delete this {{$d->name}}?')) deleteDataRemoveTR({{$d->id}})" >
+                  Delete 2</a>
               </form>
             </td>
         </tr>
@@ -145,14 +147,34 @@ function saveDataUpdateTD(id)
     url:'{{route("supplier.saveData")}}',
     data:{'_token':'<?php echo csrf_token() ?>',
           'id':id,
-          'name':eName,
-          'address':eAddress
+          'namaSupplier':eName,
+          'alamatSupplier':eAddress
          },
     success: function(data){
        if(data.status=='oke'){
          alert(data.msg)
          $('#td_name_'+id).html(eName);
          $('#td_address_'+id).html(eAddress);
+       }
+    }
+  });
+}
+
+function deleteDataRemoveTR(id)
+{
+  $.ajax({
+    type:'POST',
+    url:'{{route("supplier.deleteData")}}',
+    data:{'_token':'<?php echo csrf_token() ?>',
+          'id':id
+         },
+    success: function(data){
+       if(data.status=='oke'){
+         alert(data.msg)
+         $('#tr_'+id).remove();
+       }
+       else{
+         alert(data.msg);
        }
     }
   });

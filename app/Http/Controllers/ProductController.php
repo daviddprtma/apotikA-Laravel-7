@@ -22,7 +22,9 @@ class ProductController extends Controller
 
         // query menggunakan query builder
         $result = Product::all();
-        return view('product.index',['data' => $result]);
+        $cat = Category::all();
+        $sup = Supplier::all();
+        return view('product.index',['data' => $result,'cat'=>$cat,'sup'=> $sup]);
 
         // query dengan menggunakan query eloquent model
         // $queryEloquent = Product::all();
@@ -87,6 +89,10 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
+        $data = $product;
+        $cat = Category::all();
+        $sup = Supplier::all();
+        return view('product.edit',['data'=>$data, 'cat'=>$cat, 'sup'=>$sup]);
     }
 
     /**
@@ -99,6 +105,12 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+        $product->product_name = $request->get('product_name');
+        $product->product_price = $request->get('product_price');
+        $product->category_id = $request->get('category_id');
+        $product->supplier_id = $request->get('supplier_id');
+        $product->save();
+        return redirect()->route('products.index')->with('status','Products berhasil diupdate :)');
     }
 
     /**
@@ -110,5 +122,70 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+        try{
+            $product->delete();
+            return redirect()->route('products.index')->with('status','Data Produk berhasil dihapus');
+       }
+       catch(\PDOException $e){
+            $msg = "Data gagal dihapus. Pastikan data child sudah hilang atau tidak berhubungan dengan relasi yang lain";
+            return redirect()->route('products.index')->with('error',$msg);
+       }
     }
+
+    public function getEditProduct(Request $request){
+        $cat = Category::all();
+        $sup = Supplier::all();
+        $id = $request->get('id');
+        $data = Product::find($id);
+        return response()->json(array(
+            'status'=>'oke',
+            'msg'=>view('product.getEditProduct',['data' => $data,'cat'=>$cat,'sup'=> $sup])->render()
+        ),200);
+    }
+
+    public function getEditProduct2(Request $request){
+        $cat = Category::all();
+        $sup = Supplier::all();
+        $id = $request->get('id');
+        $data = Product::find($id);
+        return response()->json(array(
+            'status'=>'oke',
+            'msg'=>view('product.getEditProduct2',['data' => $data,'cat'=>$cat,'sup'=> $sup])->render()
+        ),200);
+    }
+
+    public function saveData(Request $request){
+        $id = $request->get('id');
+        $product = Product::find($id);
+        $product->product_name=$request->get('product_name');
+        $product->product_price=$request->get('product_price');
+        $product->category_id = $request->get('category_id');
+        $product->supplier_id = $request->get('supplier_id');
+        $product->save();
+        return response()->json(array(
+            'status'=>'oke',
+            'msg'=>'product data updated'
+        ),200);
+    }
+
+    public function deleteData(Request $request)
+    {
+        //
+       try{
+            $id=$request->get('id');
+            $product = Product::find($id);
+            $product->delete();
+            return response()->json(array(
+                'status'=>'oke',
+                'msg'=>'Product data deleted'
+            ),200);
+       }
+       catch(\PDOException $e){
+        return response()->json(array(
+            'status'=>'error',
+            'msg'=>'Product is not deleted.'
+        ),200);
+       }
+    }
+
 }

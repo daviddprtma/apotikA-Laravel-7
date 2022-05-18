@@ -62,7 +62,15 @@ Route::post('/supplier/getEditForm2','SupplierController@getEditForm2')->name('s
 
 Route::post('/supplier/saveData','SupplierController@saveData')->name('supplier.saveData');
 
+Route::post('/supplier/deleteData','SupplierController@deleteData')->name('supplier.deleteData');
 
+Route::post('/product/getEditProduct','ProductController@getEditProduct')->name('product.getEditProduct');
+
+Route::post('/product/getEditProduct2','ProductController@getEditProduct2')->name('product.getEditProduct2');
+
+Route::post('/product/saveData','ProductController@saveData')->name('product.saveData');
+
+Route::post('/product/deleteData','ProductController@deleteData')->name('product.deleteData');
 
 
 

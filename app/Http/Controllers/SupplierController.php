@@ -135,4 +135,26 @@ class SupplierController extends Controller
             'msg'=>'supplier data updated'
         ),200);
     }
+
+    public function deleteData(Request $request)
+    {
+        //
+       try{
+            $id=$request->get('id');
+            $supplier = Supplier::find($id);
+            $supplier->delete();
+            return response()->json(array(
+                'status'=>'oke',
+                'msg'=>'supplier data deleted'
+            ),200);
+       }
+       catch(\PDOException $e){
+        return response()->json(array(
+            'status'=>'error',
+            'msg'=>'supplier is not deleted. It may be used in the product'
+        ),200);
+       }
+    }
+
+
 }
