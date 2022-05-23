@@ -73,6 +73,7 @@
         <th>id</th>
         <th>name</th>
         <th>address</th>
+        <th>logo</th>
         <th colspan="2"></th>
       </tr>
     </thead>
@@ -80,8 +81,40 @@
         @foreach ($data as $d)
         <tr id="tr_{{$d->id}}">
             <td>{{ $d -> id }}</td>
-            <td id="td_name_{{$d->id}}">{{ $d-> name}}</td>
-            <td id="td_address_{{$d->id}}">{{ $d -> address}}</td>
+            <td class="editable" id="td-name-{{$d->id}}">{{ $d-> name}}</td>
+            <td class="editable" id="td-address-{{$d->id}}">{{ $d -> address}}</td>
+            <td>
+              <img src="{{asset('images/'.$d->logo)}}" height="40px">
+
+              <div class="modal fade" id="modalChange_{{$d->id}}" tabindex="-1" role="basic" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content" >
+                    <form enctype="multipart/form-data" role="form" method="POST" action="{{route('supplier.changeLogo')}}">
+                    <div class="modal-header">
+                      <button type="button" class="close" 
+                        data-dismiss="modal" aria-hidden="true"></button>
+                      <h4 class="modal-title">Ganti Logo untuk {{$d->name}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        @csrf
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Logo</label>
+                                <input type="file" class="form-control" id="logo" name="logo">
+                            </div>
+                            <input type="hidden" value="{{$d->id}}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-info">Submit</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+      
+            </td>
             <td>
               <a href="{{url('suppliers/'.$d->id.'/edit')}}" class="btn btn-xs btn-warning">edit</a>
               <a href="#modalEdit" data-toggle="modal" class="btn btn-warning btn-xs" 
@@ -89,7 +122,9 @@
                 + Edit A</a>                
               <a href="#modalEdit" data-toggle="modal" class="btn btn-warning btn-xs" 
               onclick="getEditForm2({{$d->id}})">
-                + Edit B</a>                
+                + Edit B</a>   
+              <a href="#modalChange_{{$d->id}}" data-toggle="modal" class="btn btn-xs btn-default">
+                Ganti Logo</a>                
             </td>
             <td>
               <form method="POST" action="{{url('suppliers/'.$d->id)}}">
@@ -180,4 +215,34 @@ function deleteDataRemoveTR(id)
   });
 }
 </script>
+@endsection
+
+@section('initialscript')
+<script>
+$('.editable').editable({
+  closeOnEnter:true,
+  callback:function(data){
+    if(data.content){
+      // alert(data.content)
+
+      var s_id = data.$el[0].id
+      var fname =s_id.split('-')[1]
+      var id = s_id.split('-')[2]
+
+      $.ajax({
+      type:'POST',
+      url:'{{route("supplier.saveDataField")}}',
+      data:{'_token':'<?php echo csrf_token() ?>',
+          'id':id,
+          'fname':fname,
+          'value':data.content
+         },
+      success: function(data){
+       alert(data.msg);
+      }
+      });
+    }
+  }
+});
+</script>  
 @endsection

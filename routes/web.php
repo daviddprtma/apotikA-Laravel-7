@@ -72,5 +72,7 @@ Route::post('/product/saveData','ProductController@saveData')->name('product.sav
 
 Route::post('/product/deleteData','ProductController@deleteData')->name('product.deleteData');
 
+Route::post('/supplier/saveDataField','SupplierController@saveDataField')->name('supplier.saveDataField');
 
+Route::post('/supplier/changeLogo','SupplierController@changeLogo')->name('supplier.changeLogo');
 

@@ -41,6 +41,11 @@ class SupplierController extends Controller
     {
         //
         $data = new Supplier();
+        $file = $request ->file('logo');
+        $imgFolder = 'images';
+        $imgFile = time()."_".$file->getClientOriginalName();
+        $file->move($imgFolder,$imgFile);
+        $data->logo = $imgFile;
         $data->name = $request->get('namaSupplier');
         $data->address = $request->get('alamatSupplier');
         $data -> save();
@@ -156,5 +161,32 @@ class SupplierController extends Controller
        }
     }
 
+    public function saveDataField(Request $request){
+        
+        $id= $request->get('id');
+        $fname = $request->get('fname');
+        $value = $request->get('value');
 
+        $supplier = Supplier::find($id);
+        $supplier->$fname = $value;
+        $supplier -> save();
+        return response()->json(array(
+            'status'=>'oke',
+            'msg'=>'sukses mengubah data ' .$fname.' supplier'
+        ),200);
+    }
+
+    public function changeLogo(Request $request)
+    {
+        //
+        $id = $request->get('id');
+        $data = Supplier::find($id);
+        $file =$request->file('logo');
+        $imgFolder = 'images';
+        $imgFile=time()."_".$file->getClientOriginalName();
+        $file->move($imgFolder,$imgFile);
+        $data->logo=$imgFile;
+        $data -> save();
+        return redirect() -> route('suppliers.index') -> with('status','Logo berhasil diubah');
+    }
 }
