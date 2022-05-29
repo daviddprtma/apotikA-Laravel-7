@@ -101,8 +101,8 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Logo</label>
                                 <input type="file" class="form-control" id="logo" name="logo">
+                                <input type="hidden" id="id" name="id" value="{{$d->id}}">
                             </div>
-                            <input type="hidden" value="{{$d->id}}">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -127,6 +127,7 @@
                 Ganti Logo</a>                
             </td>
             <td>
+              @can('delete-permission', $d)
               <form method="POST" action="{{url('suppliers/'.$d->id)}}">
                 @csrf
                 @method("DELETE")
@@ -135,6 +136,7 @@
                 <a class="btn btn-danger btn-xs" onclick="if(confirm('are you sure you want to delete this {{$d->name}}?')) deleteDataRemoveTR({{$d->id}})" >
                   Delete 2</a>
               </form>
+              @endcan
             </td>
         </tr>
         @endforeach

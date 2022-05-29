@@ -81,14 +81,25 @@
                   </div>
                 </div>
               </td>
-              <td><a href="{{url('medicines/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a></td>
               <td>
+                @can('change-medicine', $d)
+                <form method="POST" action="{{url('medicines/'.$d->id)}}">
+                @csrf
+                @method("PUT")
+                <a href="{{url('medicines/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
+                </form>             
+                @endcan
+              </td>
+              
+              <td>
+                @can('delete-permission', $d)
                 <form method="POST" action="{{url('medicines/'.$d->id)}}">
                   @csrf
                   @method("DELETE")
                   <input type="submit" value="delete" class="btn btn-danger"
-                  onclick="if(!confirm('are you sure you want to delete this medicines?')) return false;">
+                  onclick="if(!confirm('are you sure you want to delete this {{$d->name}}?')) return false;">
                 </form>
+                @endcan
               </td>
           </tr>    
           @endforeach

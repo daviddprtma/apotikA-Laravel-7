@@ -1,7 +1,8 @@
 @extends('layouts.conquer')
 @section('content')
 
-<form role="form" method="POST" action="{{url('products')}}">
+<form enctype="multipart/form-data"
+ role="form" method="POST" action="{{url('products')}}">
     @csrf
     <div class="form-body">
         <div class="form-group">
@@ -30,6 +31,11 @@
                     <option value="{{$s->id}}">{{$s->name}}</option>
                 @endforeach
             </select>
+        </div>
+
+        <div class="form-group">
+            <label>Foto</label>
+            <input type="file" class="form-control" name="foto" id="foto">
         </div>
 
     </div>

@@ -59,6 +59,11 @@ class ProductController extends Controller
     {
         //
         $data = new Product();
+        $file = $request ->file('foto');
+        $imgFolder = 'images';
+        $imgFile = time()."_".$file->getClientOriginalName();
+        $file->move($imgFolder,$imgFile);
+        $data->foto = $imgFile;
         $data->product_name = $request->get('product_name');
         $data->product_price = $request->get('product_price');
         $data->category_id = $request->get('category_id');
@@ -122,6 +127,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+        $this->authorize('delete-product');
         try{
             $product->delete();
             return redirect()->route('products.index')->with('status','Data Produk berhasil dihapus');
@@ -186,6 +192,20 @@ class ProductController extends Controller
             'msg'=>'Product is not deleted.'
         ),200);
        }
+    }
+
+    public function changeFoto(Request $request)
+    {
+        //
+        $id=$request->get("id");
+        $data=Product::find($id);
+        $file=$request->file('foto');
+        $imgFolder='images';
+        $imgFile=time()."_".$file->getClientOriginalName();
+        $file->move($imgFolder,$imgFile);
+        $data->foto=$imgFile;
+        $data -> save();
+        return redirect() -> route('products.index') -> with('status','Logo berhasil diubah');
     }
 
 }

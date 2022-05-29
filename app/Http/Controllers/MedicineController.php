@@ -99,6 +99,7 @@ class MedicineController extends Controller
     public function update(Request $request, Medicine $medicine)
     {
         //
+        $this->authorize('change-medicine',$medicine);
         $medicine->name = $request->get('namaObat');
         $medicine->form = $request->get('formObat');
         $medicine->formula = $request->get('formulaObat');

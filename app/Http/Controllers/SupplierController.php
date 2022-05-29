@@ -41,9 +41,9 @@ class SupplierController extends Controller
     {
         //
         $data = new Supplier();
-        $file = $request ->file('logo');
-        $imgFolder = 'images';
-        $imgFile = time()."_".$file->getClientOriginalName();
+        $file = $request->file('logo');
+        $imgFolder='images';
+        $imgFile=time()."_".$file->getClientOriginalName();
         $file->move($imgFolder,$imgFile);
         $data->logo = $imgFile;
         $data->name = $request->get('namaSupplier');
@@ -101,6 +101,7 @@ class SupplierController extends Controller
     public function destroy(Supplier $supplier)
     {
         //
+        $this ->authorize('delete-permission',$supplier);
        try{
             $supplier->delete();
             return redirect()->route('suppliers.index')->with('status','Data supplier berhasil dihapus');
@@ -179,10 +180,10 @@ class SupplierController extends Controller
     public function changeLogo(Request $request)
     {
         //
-        $id = $request->get('id');
-        $data = Supplier::find($id);
-        $file =$request->file('logo');
-        $imgFolder = 'images';
+        $id=$request->get("id");
+        $data=Supplier::find($id);
+        $file=$request->file('logo');
+        $imgFolder='images';
         $imgFile=time()."_".$file->getClientOriginalName();
         $file->move($imgFolder,$imgFile);
         $data->logo=$imgFile;

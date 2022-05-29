@@ -94,6 +94,7 @@
         <th>product_price</th>
         <th>category_id</th>
         <th>supplier_id</th>
+        <th>foto</th>
       </tr>
     </thead>
     <tbody>
@@ -104,6 +105,35 @@
             <td id="td_product_price_{{$d->id}}">{{ $d -> product_price}}</td>
             <td id="td_category_id_{{$d->id}}">{{ $d -> category_id}}</td>
             <td id="td_supplier_id_{{$d->id}}">{{ $d -> supplier_id}}</td>
+            <td><img src="{{asset('images/'.$d->foto)}}" height="40px">
+              <div class="modal fade" id="modalChange_{{$d->id}}" tabindex="-1" role="basic" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content" >
+                    <form enctype="multipart/form-data" role="form" method="POST" action="{{route('product.changeFoto')}}">
+                    <div class="modal-header">
+                      <button type="button" class="close" 
+                        data-dismiss="modal" aria-hidden="true"></button>
+                      <h4 class="modal-title">Ganti Logo untuk {{$d->product_name}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        @csrf
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Logo</label>
+                                <input type="file" class="form-control" id="foto" name="foto">
+                                <input type="hidden" id="id" name="id" value="{{$d->id}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-info">Submit</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                  </form>
+                  </div>
+                </div>
+              </div>            
+            </td>
             <td>
             <a href="#modalEditProduct" data-toggle="modal" class="btn btn-warning btn-xs" 
               onclick="getEditProduct({{$d->id}})">
@@ -111,15 +141,21 @@
                 
             <a href="#modalEditProduct" data-toggle="modal" class="btn btn-warning btn-xs" 
               onclick="getEditProduct2({{$d->id}})">
-                + Edit B</a>                
+                + Edit B</a>
+            <a href="#modalChange_{{$d->id}}" data-toggle="modal" class="btn btn-xs btn-default">
+                  Ganti Logo</a>                                
             </td>
             <td>
               <form method="POST" action="{{url('products/'.$d->id)}}">
                 @csrf
                 @method("DELETE")
-                <a class="btn btn-danger btn-xs" onclick="if(confirm('are you sure you want to delete this {{$d->product_name}}?')) deleteDataRemoveTR({{$d->id}})" >
-                  Delete 2</a>
+                <input type="submit" value="delete" class="btn btn-danger"
+                onclick="if(!confirm('are you sure you want to delete this {{$d->product_name}}?')) return false;">
               </form>
+            </td>
+            <td>
+              <a class="btn btn-danger btn-xs" onclick="if(confirm('are you sure you want to delete this {{$d->product_name}}?')) deleteDataRemoveTR({{$d->id}})" >
+                  Delete 2</a>
             </td>
         </tr>    
         @endforeach
