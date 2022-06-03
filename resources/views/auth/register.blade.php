@@ -32,6 +32,8 @@
                             <label for="pemilik">Pemilik</label><br>
                             <input type="radio" id="pegawai" name="roles" value="pegawai">
                             <label for="pegawai">Karyawan</label><br>
+                            <input type="radio" id="member" name="roles" value="member">
+                            <label for="member">Member</label><br>
                         </div>
                         </div>
 

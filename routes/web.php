@@ -17,9 +17,18 @@ use function PHPSTORM_META\type;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/','MedicineController@front_index');
+Route::get('cart','MedicineController@cart');
+Route::get('add-to-cart/{id}','MedicineController@addToCart');
+Route::get('/submit-checkout','TransactionController@submit_front')
+->name('submitcheckout')->middleware(['auth']);
+Route::get('cetakpemesanan/{id}', 'TransactionController@print_detail')
+-> name('cetakpesan') -> middleware('auth');
+
 
 Route::get('/products', function () {
     return view('products');

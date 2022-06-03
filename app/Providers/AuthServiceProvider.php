@@ -44,5 +44,11 @@ class AuthServiceProvider extends ServiceProvider
                     ? Response::allow()
                     : Response::deny("Tidak diijinkan untuk mengubah data ini"));
         });
+
+        Gate::define('checkmember',function($user){
+            return($user->sebagai =='member'
+                    ? Response::allow()
+                    : Response::deny("Anda harus menjadi member terlebih dahulu"));
+        });
     }
 }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Barryvdh\DomPDF\Facade as PDF;
 class TransactionController extends Controller
 {
     /**
@@ -50,6 +52,7 @@ class TransactionController extends Controller
     public function show(Transaction $transaction)
     {
         //
+        return view('transaction.show',compact('transaction'));
     }
 
     /**
@@ -102,5 +105,31 @@ class TransactionController extends Controller
         return response()->json(array(
             'msg'=>view('transaction.showdetail',compact('data','medicines'))->render()
         ),200);
+    }
+
+    public function submit_front(){
+        $this->authorize('checkmember');
+
+        $cart = session()->get('cart');
+        $user = Auth::user();
+        $t = new Transaction;
+        $t->user_id = $user->id;
+        $t->buyer_id = 1;
+        $t->transaction_date = Carbon::now()->toDateTimeString();
+        $t->save();
+
+        $totalHarga = $t->insertProduct($cart,$user);
+        $t->total = $totalHarga;
+        $t->save();
+
+        session()->forget('cart');
+        return redirect('/');
+    }
+
+    public function print_detail($id){
+        $transaction=Transaction::find($id);
+        $pdf = PDF::loadview('transaction.detailpdf',['transaction'=>$transaction]) -> setOptions(['defaultFont'=>'sans-serif']);
+        $name = "laporan-pemesanan".$transaction["id"].$transaction["transaction_date"].".pdf";
+        return $pdf->download($name);
     }
 }
