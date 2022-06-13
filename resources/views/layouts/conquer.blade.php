@@ -506,6 +506,13 @@ License: You must have a valid license purchased only from themeforest(the above
 				</a>
 			</li>
 
+            <li class="start ">
+				<a href="{{url('buyers')}}">
+				<i class="fa fa-slack"></i>
+				<span class="title">Buyer</span>
+				</a>
+			</li>
+
 			<li class="start ">
 				<a href="{{url('report/obattermahal')}}">
 				<i class="fa fa-plus-square"></i>

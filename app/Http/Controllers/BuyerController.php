@@ -15,6 +15,8 @@ class BuyerController extends Controller
     public function index()
     {
         //
+        $result = Buyer::all();
+        return view('buyer.index',['data' => $result]);
     }
 
     /**
