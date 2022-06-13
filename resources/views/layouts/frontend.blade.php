@@ -18,7 +18,7 @@
 <body>
 <style>
     body{
-        background-image: url('imageshome/tokoobat.jpg')
+        background-image: url('imageshome/medicinehome.jpg')
     }
 </style>
 <div class="container">
@@ -26,7 +26,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    David Medicine Store
+                    ApotekU
                 </a>
                 <a class="navbar-brand" href="{{ url('home') }}">
                     Dashboard
