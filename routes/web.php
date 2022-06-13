@@ -23,7 +23,8 @@ use function PHPSTORM_META\type;
 
 Route::get('/','MedicineController@front_index');
 Route::get('cart','MedicineController@cart');
-Route::get('add-to-cart/{id}','MedicineController@addToCart');
+Route::get('add-to-cart/{id}','MedicineController@addToCart')
+->middleware('auth');
 Route::get('/submit-checkout','TransactionController@submit_front')
 ->name('submitcheckout')->middleware(['auth']);
 Route::get('cetakpemesanan/{id}', 'TransactionController@print_detail')

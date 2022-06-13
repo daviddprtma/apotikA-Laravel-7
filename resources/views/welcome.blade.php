@@ -32,7 +32,7 @@
                 <div id='divShowInfo'></div>
 
                 <div class="title m-b-md">
-                    <strong style="color: red;">David Store Medicine</strong>
+                    <strong style="color: red;">ApotekU</strong>
                 </div>
                 
                 <div class="links">

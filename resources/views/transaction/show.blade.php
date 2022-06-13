@@ -3,7 +3,7 @@
 @section('content')
 <div class="portlet">
             <td>
-                <a href="{{url('/cetakpemesanan/{{$transaction->id}')}}"  class="btn btn-danger">
+                <a href="{{url('/cetakpemesanan/$transaction->id}')}}"  class="btn btn-danger">
                     <i class="fa fa-print">Cetak</i>
                 </a>
             </td>
@@ -40,7 +40,7 @@
             <td data-th="Quantity">
                 {{$dp->pivot->quantity}}
             </td>
-            <td data-th="Subtotal" class="text-center">Rp. {{$dp->pivot->subtotoal}}</td>
+            <td data-th="Subtotal" class="text-center">Rp. {{$dp->pivot->price * $dp->pivot->quantity}}</td>
             <td class="actions" data-th="">
             </td>
         </tr>
@@ -48,7 +48,7 @@
         </tbody>
         <tfoot>
         <tr class="visible-xs">
-            <td class="text-center"><strong>Total: Rp.{{$transaction->total}}</strong></td>
+            {{-- <td class="text-center"><strong>Total: Rp.{{$transaction->total}}</strong></td> --}}
         </tr>
         <tr>
             <td><a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Kembali Ke Daftar Pemesanan</a></td>
