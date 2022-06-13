@@ -486,7 +486,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				</form>
 			</li>
 			<li class="start ">
-				<a href="{{url('/')}}">
+				<a href="{{url('/admin')}}">
 				<i class="icon-home"></i>
 				<span class="title">Dashboard</span>
 				</a>

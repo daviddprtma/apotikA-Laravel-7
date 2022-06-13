@@ -28,12 +28,13 @@
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Sebagai</label>
                         <div class="col-md-6">
-                            <input type="radio" id="owner" name="roles" value="owner">
+                            <input type="radio" id="owner" name="roles" value="owner" required autocomplete="sebagai">
                             <label for="pemilik">Pemilik</label><br>
                             <input type="radio" id="pegawai" name="roles" value="pegawai">
                             <label for="pegawai">Karyawan</label><br>
                             <input type="radio" id="member" name="roles" value="member">
                             <label for="member">Member</label><br>
+
                         </div>
                         </div>
 

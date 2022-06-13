@@ -11,13 +11,13 @@
             {{$m->name}}
         </td>
         <td>
-            {{$m->pivot->price}}
+            {{$m->price}}
         </td> 
         <td>
             {{$m->pivot->quantity}} 
         </td> 
         <td>
-            {{$m->pivot->quantity * $m->pivot->price}}
+            {{$m->pivot->quantity * $m->price}}
         </td>
     </tr>
     @endforeach

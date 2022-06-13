@@ -115,7 +115,7 @@ class TransactionController extends Controller
         $t = new Transaction;
         $t->user_id = $user->id;
         $t->buyer_id = 1;
-        $t->transaction_date = Carbon::now()->toDateTimeString();
+        $t->transaction_date = Carbon::now()->format('Y-m-d H:i:m');
         $t->save();
 
         $totalHarga = $t->insertProduct($cart,$user);
@@ -129,7 +129,7 @@ class TransactionController extends Controller
     public function print_detail($id){
         $transaction=Transaction::find($id);
         $pdf = PDF::loadview('transaction.detailpdf',['transaction'=>$transaction]) -> setOptions(['defaultFont'=>'sans-serif']);
-        $name = "laporan-pemesanan".$transaction["id"].$transaction["transaction_date"].".pdf";
+        $name = "laporan-pemesanan".$transaction->id.$transaction->transaction_date.".pdf";
         return $pdf->download($name);
     }
 }

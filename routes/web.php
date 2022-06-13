@@ -17,9 +17,9 @@ use function PHPSTORM_META\type;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/admin', function () {
+    return view('welcome');
+});
 
 Route::get('/','MedicineController@front_index');
 Route::get('cart','MedicineController@cart');

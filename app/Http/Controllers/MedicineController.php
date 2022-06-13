@@ -311,6 +311,7 @@ class MedicineController extends Controller
     }
 
     public function addToCart($id){
+
         $p = Medicine::find($id);
         $cart = session()->get('cart');
         if(!isset($cart[$id])){

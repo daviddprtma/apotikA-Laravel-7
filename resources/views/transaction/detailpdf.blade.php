@@ -1,11 +1,8 @@
-@extends('layouts.frontend')
-
-@section('content')
 <div class="portlet">
     <h1>INVOICE</h1>
         <div class="portlet-title">
-            <b>Pemesanan dari transaksi kode: {{$transaction["id"]}}</b><br>
-            <b>Tanggal Pemesanan: {{$transaction["transaction_date"]}}</b>
+            <b>Pemesanan dari transaksi kode: {{ $transaction->id }}</b><br>
+            <b>Tanggal Pemesanan: {{$transaction->transaction_date}}</b>
         </div>
         <div class="portlet-body">
             <div class="row">
@@ -20,12 +17,17 @@
             </tr>
             </thead>
             <tbody>
-            {{-- @foreach($transaction->medicines as $dp)
+           @foreach($transaction->medicines as $dp)
             <tr>
             <td data-th="Product">
                 <div class="row">
                     <div class="col-sm-3 hidden-xs">
-                        <img src="{{asset('assets/images/'.$dp->image)}}" width="100" height="100">
+                        @php
+                            $image = 'assets/images/'.$dp->image;
+                            $imageData = base64_encode(file_get_contents($image));
+                            $src = 'data:'.mime_content_type($image). ';base64,' . $imageData;
+                        @endphp 
+                        <img src="{{ $src }}" width="100" height="100">
                     </div>
                     <div class="col-sm-9">
                         <h4 class="nomargin">{{$dp->name}}</h4>
@@ -36,20 +38,18 @@
             <td data-th="Quantity">
                 {{$dp->pivot->quantity}}
             </td>
-            <td data-th="Subtotal" class="text-center">Rp. {{$dp->pivot->subtotoal}}</td>
+            <td data-th="Subtotal" class="text-center">Rp. {{$dp->price * $dp->pivot->quantity}}</td>
             <td class="actions" data-th="">
             </td>
         </tr>
-            @endforeach --}}
+            @endforeach
         </tbody>
         <tfoot>
-        {{-- <tr class="visible-xs">
+         <tr class="visible-xs">
             <td class="text-center"><strong>Total: Rp.{{$transaction->total}}</strong></td>
-        </tr> --}}
+        </tr>
         </tfoot>
     </table>
         </div>
     </div>
 </div>
-
-@endsection

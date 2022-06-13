@@ -3,7 +3,7 @@
 @section('content')
 <div class="portlet">
             <td>
-                <a href="{{url('/cetakpemesanan/$transaction->id}')}}"  class="btn btn-danger">
+                <a href="{{url('/cetakpemesanan/'.$transaction->id)}}"  class="btn btn-danger">
                     <i class="fa fa-print">Cetak</i>
                 </a>
             </td>
@@ -29,7 +29,7 @@
             <td data-th="Product">
                 <div class="row">
                     <div class="col-sm-3 hidden-xs">
-                        <img src="{{asset('assets/images/'.$dp->image)}}" width="100" height="100">
+                        <img src="{{ asset('assets/images/'.$dp->image) }}" width="100" height="100">
                     </div>
                     <div class="col-sm-9">
                         <h4 class="nomargin">{{$dp->name}}</h4>
@@ -40,7 +40,7 @@
             <td data-th="Quantity">
                 {{$dp->pivot->quantity}}
             </td>
-            <td data-th="Subtotal" class="text-center">Rp. {{$dp->pivot->price * $dp->pivot->quantity}}</td>
+            <td data-th="Subtotal" class="text-center">Rp. {{$dp->price * $dp->pivot->quantity}}</td>
             <td class="actions" data-th="">
             </td>
         </tr>
