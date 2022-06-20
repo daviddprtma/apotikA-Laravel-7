@@ -50,5 +50,14 @@ class AuthServiceProvider extends ServiceProvider
                     ? Response::allow()
                     : Response::deny("Anda harus menjadi member terlebih dahulu"));
         });
+
+        Gate::define('isMember',function($user){
+            if($user->sebagai =='member'){
+                return true;
+            }
+           
+            return false;
+            
+        });
     }
 }

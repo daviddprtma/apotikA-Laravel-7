@@ -10,6 +10,12 @@
  </div>
 @endif
 
+@if (session('error'))
+<div class="alert alert-danger">
+    {{session('error')}}
+ </div>
+@endif
+
 {{-- <?php dd(session()->get('cart')) ?> --}}
     <div class="container products">
 

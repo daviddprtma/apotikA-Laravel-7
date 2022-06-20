@@ -113,8 +113,8 @@ class TransactionController extends Controller
         $cart = session()->get('cart');
         $user = Auth::user();
         $t = new Transaction;
-        $t->buyer_id = $user->id;
-        $t->user_id = 1;
+        $t->buyer_id = 1;
+        $t->user_id = $user->id;
         $t->transaction_date = Carbon::now()->format('Y-m-d H:i:m');
         $t->save();
 

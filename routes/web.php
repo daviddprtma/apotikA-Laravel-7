@@ -21,7 +21,7 @@ Route::get('/admin', function () {
     return view('welcome');
 });
 
-Route::get('/','MedicineController@front_index');
+Route::get('/','MedicineController@front_index')->name('cart');
 Route::get('cart','MedicineController@cart');
 Route::get('add-to-cart/{id}','MedicineController@addToCart')
 ->middleware('auth');

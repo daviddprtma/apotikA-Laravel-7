@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+
 class MedicineController extends Controller
 {
     /**
@@ -311,23 +314,27 @@ class MedicineController extends Controller
     }
 
     public function addToCart($id){
-
-        $p = Medicine::find($id);
-        $cart = session()->get('cart');
-        if(!isset($cart[$id])){
-            $cart[$id]=[
-                "name"=>$p->name,
-                "quantity"=>1,
-                "price"=>$p->price,
-                "image"=>$p->image
-            ];
+        if(Gate::allows('isMember', Auth::user())){
+            $p = Medicine::find($id);
+            $cart = session()->get('cart');
+            if(!isset($cart[$id])){
+                $cart[$id]=[
+                    "name"=>$p->name,
+                    "quantity"=>1,
+                    "price"=>$p->price,
+                    "image"=>$p->image
+                ];
+            }
+            else{
+                $cart[$id]['quantity']++;
+            }
+            session()->put('cart',$cart);
+            return redirect()->route('cart')->with('success', 'Product ' . $cart[$id]['name'] . " jumlah " . $cart[$id]['quantity']. " berhasil ditambahkan");
         }
         else{
-            $cart[$id]['quantity']++;
+            Auth::logout();
+            return redirect()->route('cart')->with('error', 'You are no a member'); 
         }
-        session()->put('cart',$cart);
-        return redirect()->back()->with('success', 'Product ' . $cart[$id]['name'] . " jumlah " . $cart[$id]['quantity']. " berhasil ditambahkam");
-
     }
 
     public function cart(){

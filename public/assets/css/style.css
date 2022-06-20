@@ -875,6 +875,7 @@ Page content
   padding: 0px;
   background-color: #FaFaFa; 
   border-radius: 0 0 0 4px;
+  width: 100%;
 }
 
 .page-sidebar-reversed .page-content {
