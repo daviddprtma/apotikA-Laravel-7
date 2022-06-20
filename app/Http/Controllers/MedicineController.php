@@ -333,7 +333,7 @@ class MedicineController extends Controller
         }
         else{
             Auth::logout();
-            return redirect()->route('cart')->with('error', 'You are no a member'); 
+            return redirect()->route('cart')->with('error', 'You are not a member'); 
         }
     }
 
