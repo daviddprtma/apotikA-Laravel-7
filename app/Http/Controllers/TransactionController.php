@@ -123,7 +123,7 @@ class TransactionController extends Controller
         $t->save();
 
         session()->forget('cart');
-        return redirect('/');
+        return redirect()->route('cart')->with('status', 'Data berhasil di checkout dan masuk di dashboard :D');
     }
 
     public function print_detail($id){

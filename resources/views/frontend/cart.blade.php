@@ -4,6 +4,19 @@
 
 @section('content')
 
+@if (session('status'))
+<div class="alert alert-success">
+    {{session('status')}}
+ </div>
+@endif
+
+@if (session('error'))
+<div class="alert alert-danger">
+    {{session('error')}}
+ </div>
+@endif
+
+
     <table id="cart" class="table table-hover table-condensed">
         <thead>
         <tr>

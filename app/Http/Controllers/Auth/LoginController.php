@@ -38,7 +38,7 @@ class LoginController extends Controller
                 return '/admin';
                 break;
             case 'member':
-                return '/cart';
+                return '/';
                 break;
 
             default:
