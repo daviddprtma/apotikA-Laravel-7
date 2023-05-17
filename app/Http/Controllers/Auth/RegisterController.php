@@ -34,6 +34,7 @@ class RegisterController extends Controller
         $role = Auth::user()->sebagai;
         switch($role){
             case 'owner':
+<<<<<<< HEAD
                 return '/suppliers';
                 break;
             case 'pegawai':
@@ -41,6 +42,15 @@ class RegisterController extends Controller
                 break;
             case 'member':
                 return '/cart';
+=======
+                return '/admin';
+                break;
+            case 'pegawai':
+                return '/admin';
+                break;
+            case 'member':
+                return '/';
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
                 break;
             
             default:

@@ -24,7 +24,11 @@ class Transaction extends Model
         $total=0;
         foreach($cart as $id=>$detail){
             $total += $detail['price'] * $detail['quantity'];
+<<<<<<< HEAD
             $this->medicines()->attach($id,['quantity' => $detail['quantity'], 'subtotal' => $detail['price']]);
+=======
+            $this->medicines()->attach($id,['quantity' => $detail['quantity'], 'price' => $detail['price'], 'subtotal'=>($detail['price'] * $detail['quantity'])]);
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
         }
         return $total;
     }

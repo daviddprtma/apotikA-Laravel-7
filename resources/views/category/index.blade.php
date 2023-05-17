@@ -3,7 +3,11 @@
 
 <div class="container">
   <h2>Daftar Category</h2>
+<<<<<<< HEAD
   <p>Berikut ini adalah daftar kategori yang ada di David Medicine Store</p>            
+=======
+  <p>Berikut ini adalah daftar kategori yang ada di ApotekU</p>
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
   <table class="table">
     <thead>
       <tr>
@@ -26,8 +30,13 @@
 
               <a class='btn btn-xs btn-info' data-toggle='modal' data-target='#myModal'
                 onclick='showProducts({{ $d->id }})'>Detail</a>
+<<<<<<< HEAD
           </td>  
         </tr>    
+=======
+          </td>
+        </tr>
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
         @endforeach
     </tbody>
   </table>
@@ -42,7 +51,11 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
+<<<<<<< HEAD
   </div>  
+=======
+  </div>
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 </div>
 @endsection
 
@@ -62,4 +75,8 @@ function showProducts(category_id)
   });
 }
 </script>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032

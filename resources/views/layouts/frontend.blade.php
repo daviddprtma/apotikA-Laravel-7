@@ -28,11 +28,17 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     ApotekU
                 </a>
+<<<<<<< HEAD
                 @if (Route::has('login'))
                 <a class="navbar-brand" href="{{ url('home') }}">
                     Dashboard
                 </a>
                 @endif
+=======
+                <a class="navbar-brand" href="{{ url('home') }}">
+                    Dashboard
+                </a>
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

@@ -21,7 +21,11 @@ Route::get('/admin', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 Route::get('/','MedicineController@front_index');
+=======
+Route::get('/','MedicineController@front_index')->name('cart');
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 Route::get('cart','MedicineController@cart');
 Route::get('add-to-cart/{id}','MedicineController@addToCart')
 ->middleware('auth');
@@ -62,6 +66,11 @@ Route::get('/conquer', function () {
 });
 
 Route::get('report/obattermahal','MedicineController@obattermahal');
+<<<<<<< HEAD
+=======
+Route::get('report/customerbanyakbeli','TransactionController@mostbuycustomer');
+Route::get('report/obatbanyakbeli','MedicineController@mostbuymedicine');
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 Route::post('/medicines/showInfo','MedicineController@showInfo')->name('medicines.showInfo');
 
 Route::post('transactions/showDataAjax','TransactionController@showAjax')->name('transactions.showAjax');

@@ -3,19 +3,32 @@
 
 <div class="container">
   <h2>Daftar Supplier</h2>
+<<<<<<< HEAD
   <p>Berikut ini adalah daftar supplier yang ada di David Medicine Store</p>
   <div class="page-toolbar">
       <a href="{{url('suppliers/create')}}" class="btn btn-info" type="button">
         + Tambah Supplier</a>
       <a href="#modalCreate" data-toggle="modal" class="btn btn-info" type="button">
         + Supplier Baru(modal)</a>
+=======
+  <p>Berikut ini adalah daftar supplier yang ada di ApotekU</p>
+  <div class="page-toolbar">
+      <a href="{{url('suppliers/create')}}" class="btn btn-info" type="button">
+        + Tambah Supplier</a>
+      {{-- <a href="#modalCreate" data-toggle="modal" class="btn btn-info" type="button">
+        + Supplier Baru(modal)</a> --}}
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 
         <div class="modal fade" id="modalCreate" tabindex="-1" role="basic" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content" >
               <form role="form" method="POST" action="{{url('suppliers')}}">
               <div class="modal-header">
+<<<<<<< HEAD
                 <button type="button" class="close" 
+=======
+                <button type="button" class="close"
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
                   data-dismiss="modal" aria-hidden="true"></button>
                 <h4 class="modal-title">Add New Supplier</h4>
               </div>
@@ -66,7 +79,11 @@
      </div>
   @endif
   <br>
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
   <table class="table">
     <thead>
       <tr>
@@ -91,7 +108,11 @@
                   <div class="modal-content" >
                     <form enctype="multipart/form-data" role="form" method="POST" action="{{route('supplier.changeLogo')}}">
                     <div class="modal-header">
+<<<<<<< HEAD
                       <button type="button" class="close" 
+=======
+                      <button type="button" class="close"
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
                         data-dismiss="modal" aria-hidden="true"></button>
                       <h4 class="modal-title">Ganti Logo untuk {{$d->name}}</h4>
                     </div>
@@ -113,6 +134,7 @@
                   </div>
                 </div>
               </div>
+<<<<<<< HEAD
       
             </td>
             <td>
@@ -125,6 +147,20 @@
                 + Edit B</a>   
               <a href="#modalChange_{{$d->id}}" data-toggle="modal" class="btn btn-xs btn-default">
                 Ganti Logo</a>                
+=======
+
+            </td>
+            <td>
+              <a href="{{url('suppliers/'.$d->id.'/edit')}}" class="btn btn-xs btn-warning">edit</a>
+              <a href="#modalEdit" data-toggle="modal" class="btn btn-warning btn-xs"
+              onclick="getEditForm({{$d->id}})">
+                + Edit A</a>
+              <a href="#modalEdit" data-toggle="modal" class="btn btn-warning btn-xs"
+              onclick="getEditForm2({{$d->id}})">
+                + Edit B</a>
+              <a href="#modalChange_{{$d->id}}" data-toggle="modal" class="btn btn-xs btn-default">
+                Ganti Logo</a>
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
             </td>
             <td>
               @can('delete-permission', $d)
@@ -246,5 +282,10 @@ $('.editable').editable({
     }
   }
 });
+<<<<<<< HEAD
 </script>  
 @endsection
+=======
+</script>
+@endsection
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032

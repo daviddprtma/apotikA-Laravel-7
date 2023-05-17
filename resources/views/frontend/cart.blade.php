@@ -4,6 +4,22 @@
 
 @section('content')
 
+<<<<<<< HEAD
+=======
+@if (session('status'))
+<div class="alert alert-success">
+    {{session('status')}}
+ </div>
+@endif
+
+@if (session('error'))
+<div class="alert alert-danger">
+    {{session('error')}}
+ </div>
+@endif
+
+
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
     <table id="cart" class="table table-hover table-condensed">
         <thead>
         <tr>

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Buyer;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\DB;
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 use Illuminate\Http\Request;
 
 class BuyerController extends Controller
@@ -15,7 +19,13 @@ class BuyerController extends Controller
     public function index()
     {
         //
+<<<<<<< HEAD
         $result = Buyer::all();
+=======
+        $result = DB::table('users')
+        ->where('sebagai','=','member')
+        ->get();
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
         return view('buyer.index',['data' => $result]);
     }
 
