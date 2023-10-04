@@ -40,7 +40,7 @@ class RegisterController extends Controller
                 return '/products';
                 break;
             case 'member':
-                return '/cart';
+                return '/';
                 break;
             
             default:
