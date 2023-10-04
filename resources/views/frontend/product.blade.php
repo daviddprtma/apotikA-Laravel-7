@@ -10,12 +10,15 @@
  </div>
 @endif
 
+<<<<<<< HEAD
+=======
 @if (session('error'))
 <div class="alert alert-danger">
     {{session('error')}}
  </div>
 @endif
 
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 {{-- <?php dd(session()->get('cart')) ?> --}}
     <div class="container products">
 

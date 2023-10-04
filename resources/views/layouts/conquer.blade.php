@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 
 {{-- conquer ini menggunakan ui-modal.html --}}
+<<<<<<< HEAD
+	<!-- 
+=======
 	<!--
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 Template Name: Conquer - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.2.0
 Version: 2.0
 Author: KeenThemes
@@ -54,16 +58,28 @@ License: You must have a valid license purchased only from themeforest(the above
     <div class="header-inner">
         <!-- BEGIN LOGO -->
 	<div class="page-logo">
+<<<<<<< HEAD
+            <a href="index.html">
+                <img src="{{ asset('assets/img/logo.png')}}" alt="logo"/>
+            </a>
+        </div>
+        <form class="search-form search-form-header" role="form" action="index.html">
+=======
             <a href="{{url('/admin')}}">
                 <img src="{{ asset('assets/img/logo.png')}}" alt="logo"/>
             </a>
         </div>
         {{-- <form class="search-form search-form-header" role="form" action="index.html">
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
             <div class="input-icon right">
                 <i class="icon-magnifier"></i>
                 <input type="text" class="form-control input-sm" name="query" placeholder="Search...">
             </div>
+<<<<<<< HEAD
+        </form>
+=======
         </form> --}}
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 	<!-- END LOGO -->
         <!-- BEGIN RESPONSIVE MENU TOGGLER -->
         <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -72,8 +88,12 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END RESPONSIVE MENU TOGGLER -->
         <!-- BEGIN TOP NAVIGATION MENU -->
         <ul class="nav navbar-nav pull-right">
+<<<<<<< HEAD
+            <!-- BEGIN NOTIFICATION DROPDOWN -->
+=======
             <!-- commented -noor -->
             {{-- <!-- BEGIN NOTIFICATION DROPDOWN -->
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
             <li class="dropdown" id="header_notification_bar">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                 <i class="icon-bell"></i>
@@ -409,7 +429,11 @@ License: You must have a valid license purchased only from themeforest(the above
                     </li>
                 </ul>
             </li>
+<<<<<<< HEAD
+            <!-- END TODO DROPDOWN -->
+=======
             <!-- END TODO DROPDOWN --> --}}
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
             <li class="devider">
                  &nbsp;
             </li>
@@ -422,15 +446,25 @@ License: You must have a valid license purchased only from themeforest(the above
                     {{Auth::user()->name}} Email: {{Auth::user()->email}}
                 @else
                     Anda belum login
+<<<<<<< HEAD
+                @endif 
+=======
                 @endif
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
                 </span>
                 <i class="fa fa-angle-down"></i>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
+<<<<<<< HEAD
+                        <a href="extra_profile.html"><i class="fa fa-user"></i> My Profile</a>
+                    </li>
+                    <li>
+=======
                         <a href="{{url('/admin')}}"><i class="fa fa-user"></i> Home</a>
                     </li>
                     {{-- <li>
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
                         <a href="page_calendar.html"><i class="fa fa-calendar"></i> My Calendar</a>
                     </li>
                     <li>
@@ -442,7 +476,11 @@ License: You must have a valid license purchased only from themeforest(the above
                         <a href="#"><i class="fa fa-tasks"></i> My Tasks <span class="badge badge-success">
                         7 </span>
                         </a>
+<<<<<<< HEAD
+                    </li>
+=======
                     </li> --}}
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
                     <li class="divider">
                     </li>
                     <li>
@@ -457,7 +495,11 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- END USER LOGIN DROPDOWN -->
         </ul>
         <!-- END TOP NAVIGATION MENU -->
+<<<<<<< HEAD
+    </div>  
+=======
     </div>
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
     <!-- END TOP NAVIGATION BAR -->
 </div>
 	<!-- END HEADER -->
@@ -478,15 +520,23 @@ License: You must have a valid license purchased only from themeforest(the above
 				</div>
 				<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 			</li>
+<<<<<<< HEAD
+			<li class="sidebar-search-wrapper">
+=======
             <!-- commented -noor -->
 			{{-- <li class="sidebar-search-wrapper">
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 				<form class="search-form" role="form" action="index.html" method="get">
 					<div class="input-icon right">
 						<i class="fa fa-search"></i>
 						<input type="text" class="form-control input-sm" name="query" placeholder="Search...">
 					</div>
 				</form>
+<<<<<<< HEAD
+			</li>
+=======
 			</li> --}}
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 			<li class="start ">
 				<a href="{{url('/admin')}}">
 				<i class="icon-home"></i>
@@ -522,6 +572,8 @@ License: You must have a valid license purchased only from themeforest(the above
 				</a>
 			</li>
 
+<<<<<<< HEAD
+=======
             <li class="start ">
 				<a href="{{url('report/obatbanyakbeli')}}">
 				<i class="fa fa-plus-square"></i>
@@ -536,6 +588,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				</a>
 			</li>
 
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
             <li class="start">
 				<a href="{{url('transactions')}}">
                     <i class="fa fa-shopping-cart"></i>
@@ -550,12 +603,20 @@ License: You must have a valid license purchased only from themeforest(the above
 				</a>
 			</li>
 
+<<<<<<< HEAD
+            <li class="start">
+=======
             {{-- <li class="start">
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 				<a href="{{url('products')}}">
                     <i class="fa fa-truck"></i>
 				<span class="title">Daftar Produk</span>
 				</a>
+<<<<<<< HEAD
+			</li>
+=======
 			</li> --}}
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 		</ul>
 		<!-- END SIDEBAR MENU -->
 	</div>
@@ -599,7 +660,11 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="assets/scripts/app.js"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
+<<<<<<< HEAD
+jQuery(document).ready(function() {       
+=======
 jQuery(document).ready(function() {
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
    // initiate layout and plugins
    App.init();
 });
@@ -609,4 +674,8 @@ jQuery(document).ready(function() {
 <!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032

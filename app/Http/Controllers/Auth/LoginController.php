@@ -32,6 +32,17 @@ class LoginController extends Controller
         $role = Auth::user()->sebagai;
         switch($role){
             case 'owner':
+<<<<<<< HEAD
+                return '/suppliers';
+                break;
+            case 'pegawai':
+                return '/products';
+                break;
+            case 'member':
+                return '/cart';
+                break;
+            
+=======
                 return '/admin';
                 break;
             case 'pegawai':
@@ -41,6 +52,7 @@ class LoginController extends Controller
                 return '/';
                 break;
 
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
             default:
                 return '/';
                 break;

@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
+<<<<<<< HEAD
+=======
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 class MedicineController extends Controller
 {
     /**
@@ -149,7 +152,11 @@ class MedicineController extends Controller
 
         // aggregate count
         // $result = DB::table('medicines')
+<<<<<<< HEAD
+        //         -> count(); 
+=======
         //         -> count();
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
         // result 16
 
         // aggregate max
@@ -162,7 +169,11 @@ class MedicineController extends Controller
         //           -> count();
         // result 11
 
+<<<<<<< HEAD
+        // // join 
+=======
         // // join
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
         // $result = DB::table('medicines')
         //           -> join('categories','medicines.category_id','=','categories.id')
         //           -> orderBy('price','DESC')
@@ -183,7 +194,11 @@ class MedicineController extends Controller
 
     public function coba2(){
         // query 1 table
+<<<<<<< HEAD
+        // query builder categories 
+=======
         // query builder categories
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
         $result = DB::table('categories')
                   -> get();
 
@@ -221,7 +236,11 @@ class MedicineController extends Controller
         $result = Category::select('medicines.category_id')
                   ->join('medicines', 'medicines.category_id','=','categories.id')
                   ->count();
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
         // query builder medicines & category
         // Tampilkan nama kategori yang tidak memiliki data medicines satupun
         $result = DB::table('categories')
@@ -229,7 +248,11 @@ class MedicineController extends Controller
                   ->whereNotIn('id', DB::table('medicines') ->select('category_id'))
                   -> get();
 
+<<<<<<< HEAD
+         // query eloquent medicines & category       
+=======
          // query eloquent medicines & category
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
          $result = Category::select('category_name')
                    ->whereNotIn('id', DB::table('medicines') ->select('category_id'))
                    -> get();
@@ -242,7 +265,11 @@ class MedicineController extends Controller
                   ->groupBy('c.id','c.category_name')
                   ->get();
 
+<<<<<<< HEAD
+         // query eloquent medicines & category       
+=======
          // query eloquent medicines & category
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
             $result = Medicine:: select('c.id','c.category_name',DB::raw('IFNULL(avg(medicines.price),0) as RataRataHarga'))
                       ->rightjoin('categories as c','c.id','=','medicines.category_id')
                       ->groupBy('c.id','c.category_name')
@@ -257,7 +284,11 @@ class MedicineController extends Controller
                       ->having(DB::raw('count(m.category_id)'),'=',1)
                       ->get();
 
+<<<<<<< HEAD
+        // query eloquent medicines & category     
+=======
         // query eloquent medicines & category
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
               $result = Category::select('categories.category_name')
                         ->join('medicines as m','m.category_id','=','categories.id')
                         ->groupBy('categories.category_name')
@@ -296,7 +327,11 @@ class MedicineController extends Controller
 
     public function obattermahal(){
         $hasilTermahal = Medicine::orderBy('price','DESC')->first();
+<<<<<<< HEAD
+        return view('report.maxpricemedicine',['result'=>$hasilTermahal]);
+=======
         return view('report.maxpricemedicine',['data'=>$hasilTermahal]);
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
     }
 
     public function showInfo(){
@@ -305,7 +340,11 @@ class MedicineController extends Controller
             'status'=>'oke',
             'msg'=>"<div class='alert alert-info'>
                      Did you know? <br> The most expensive product is ".$obatTermahal -> name. " with price Rp. ".$obatTermahal -> price."</div>"
+<<<<<<< HEAD
+        ),200);        
+=======
         ),200);
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
     }
 
     public function front_index(){
@@ -314,6 +353,25 @@ class MedicineController extends Controller
     }
 
     public function addToCart($id){
+<<<<<<< HEAD
+
+        $p = Medicine::find($id);
+        $cart = session()->get('cart');
+        if(!isset($cart[$id])){
+            $cart[$id]=[
+                "name"=>$p->name,
+                "quantity"=>1,
+                "price"=>$p->price,
+                "image"=>$p->image
+            ];
+        }
+        else{
+            $cart[$id]['quantity']++;
+        }
+        session()->put('cart',$cart);
+        return redirect()->back()->with('success', 'Product ' . $cart[$id]['name'] . " jumlah " . $cart[$id]['quantity']. " berhasil ditambahkam"); 
+
+=======
         if(Gate::allows('isMember', Auth::user())){
             $p = Medicine::find($id);
             $cart = session()->get('cart');
@@ -333,14 +391,17 @@ class MedicineController extends Controller
         }
         else{
             Auth::logout();
-            return redirect()->route('cart')->with('error', 'You are no a member'); 
+            return redirect()->route('cart')->with('error', 'You are not a member'); 
         }
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
     }
 
     public function cart(){
         return view('frontend.cart');
     }
 
+<<<<<<< HEAD
+=======
     public function mostbuymedicine(){
         $data = Medicine:: select('medicines.name','medicines.form','medicines.price',DB::raw('IFNULL(sum(t.quantity),0) as totalbeli'))
         ->rightjoin('medicine_transaction as t','t.medicine_id','=','medicines.id')
@@ -352,4 +413,5 @@ class MedicineController extends Controller
         return view('report.mostbuymedicine',['data'=>$data]);
     }
 
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 }

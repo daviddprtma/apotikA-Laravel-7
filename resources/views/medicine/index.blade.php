@@ -14,11 +14,18 @@
      </div>
   @endif
 <br>
+<<<<<<< HEAD
+  
+
+  <div class="container">
+    <h2>Daftar Obat Menggunakan Grid table bootstrap</h2>
+=======
 
 
   <div class="container">
     <h2>Daftar Obat</h2>
     <p>Berikut ini adalah daftar kategori yang ada di ApotekU</p>
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
     <div class="page-toolbar">
       <a href="{{url('medicines/create')}}" class="btn btn-info" type="button">
         + Tambah Medicine</a>
@@ -47,7 +54,11 @@
                 <a href="#detail_{{$d->id}}" data-toggle="modal">
                       <img src="{{asset('assets/images/'.$d->image) }}"
                        height="100px" /></a>
+<<<<<<< HEAD
+            
+=======
 
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
                       <div class="modal fade" id="detail_{{$d->id}}" tabindex="-1" role="basic" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
@@ -72,7 +83,11 @@
               <td>{{ $d -> category_id}}</td>
               <td>
                 <a class='btn btn-info' href="{{url('medicines/'.$d->id)}}"
+<<<<<<< HEAD
+                   data-target="#show{{$d->id}}" data-toggle='modal'>detail</a>        
+=======
                    data-target="#show{{$d->id}}" data-toggle='modal'>detail</a>
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
                 <div class="modal fade" id="show{{$d->id}}" tabindex="-1" role="basic" aria-hidden="true">
                   <div class="modal-dialog">
                    <div class="modal-content">
@@ -88,10 +103,17 @@
                 @csrf
                 @method("PUT")
                 <a href="{{url('medicines/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
+<<<<<<< HEAD
+                </form>             
+                @endcan
+              </td>
+              
+=======
                 </form>
                 @endcan
               </td>
 
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
               <td>
                 @can('delete-permission', $d)
                 <form method="POST" action="{{url('medicines/'.$d->id)}}">
@@ -102,11 +124,24 @@
                 </form>
                 @endcan
               </td>
+<<<<<<< HEAD
+          </tr>    
+=======
           </tr>
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
           @endforeach
       </tbody>
     </table>
   </div>
+<<<<<<< HEAD
+  
+
+  <div class="container">
+    <h2>Daftar Obat</h2>
+     <div class="row">
+        @foreach($data as $d)
+        <div class="col-md-3" style="text-align: center; border: 1px solid grey; margin: 5px; 
+=======
 
 
   {{-- <div class="container">
@@ -114,10 +149,22 @@
      <div class="row">
         @foreach($data as $d)
         <div class="col-md-3" style="text-align: center; border: 1px solid grey; margin: 5px;
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
               padding: 5px; border-radius: 10px; ">
             <img src="{{asset('assets/images/'.$d->image) }}"
              height="160px" /> <br>
              <a href="/medicines/{{$d->id}}">
+<<<<<<< HEAD
+              <b>{{$d->name}}</b> 
+              <br>
+              {{$d->form}}
+             </a>    
+        </div>
+        @endforeach
+      </div>
+  </div>
+@endsection
+=======
               <b>{{$d->name}}</b>
               <br>
               {{$d->form}}
@@ -127,3 +174,4 @@
       </div>
   </div> --}}
 @endsection
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032

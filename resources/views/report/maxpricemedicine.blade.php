@@ -3,6 +3,18 @@
 
     <div class="container">
         <h2>Obat Termahal </h2>
+<<<<<<< HEAD
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Harga Obat termahal yaitu Rp.{{$result -> price}}</th>
+              </tr>
+            </thead>
+          </table>    
+    </div>
+@endsection
+=======
         <p>Berikut ini adalah data obat termahal yang ada di ApotekU</p>
         <table class="table">
             <div class="row">
@@ -48,3 +60,4 @@
           </table>
     </div>
 @endsection
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032

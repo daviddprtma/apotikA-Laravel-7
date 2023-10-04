@@ -92,7 +92,11 @@ class TransactionController extends Controller
     // public function showAjax(Request $request)
     // {
     //     $id=$request->id;
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
     //     return response()->json(array(
     //         'msg'=>$id
     //     ),200);
@@ -113,8 +117,13 @@ class TransactionController extends Controller
         $cart = session()->get('cart');
         $user = Auth::user();
         $t = new Transaction;
+<<<<<<< HEAD
+        $t->user_id = $user->id;
+        $t->buyer_id = 1;
+=======
         $t->buyer_id = 1;
         $t->user_id = $user->id;
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
         $t->transaction_date = Carbon::now()->format('Y-m-d H:i:m');
         $t->save();
 
@@ -123,7 +132,11 @@ class TransactionController extends Controller
         $t->save();
 
         session()->forget('cart');
+<<<<<<< HEAD
+        return redirect('/');
+=======
         return redirect()->route('cart')->with('status', 'Data berhasil di checkout dan masuk di dashboard :D');
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
     }
 
     public function print_detail($id){
@@ -132,6 +145,8 @@ class TransactionController extends Controller
         $name = "laporan-pemesanan".$transaction->id.$transaction->transaction_date.".pdf";
         return $pdf->download($name);
     }
+<<<<<<< HEAD
+=======
 
     public function mostbuycustomer(){
         $data = Transaction::select('u.id', 'u.name', DB::raw('IFNULL(sum(transactions.total),0) as totalpembeli'))
@@ -143,4 +158,5 @@ class TransactionController extends Controller
 
         return view('report.mostbuycustomer',['data'=>$data]);
     }
+>>>>>>> f7a2feb6ed956033dc000ae28e8a7a221ef27032
 }
